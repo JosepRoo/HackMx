@@ -4,7 +4,6 @@ Flask-SQLAlchemy==2.3.2
 Flask-Script==2.0.6
 Jinja2==2.10
 MarkupSafe==1.0
-SQLAlchemy==1.2.6
 Werkzeug==0.14.1
 click==6.7
 dominate==2.3.1

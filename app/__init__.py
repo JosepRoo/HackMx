@@ -1,4 +1,6 @@
 from flask import Flask
+
+from app.common.database import Database
 from config import config
 from flask_bootstrap import Bootstrap
 
@@ -15,5 +17,6 @@ def create_app(config_name):
 
     # Initialize any extensions we are using
     bootstrap.init_app(app)
+    Database.initialize()
 
     return app

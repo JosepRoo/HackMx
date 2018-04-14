@@ -37,13 +37,17 @@ class User(object):
         User(name, last_name, email, Utils.hash_password(password), vehicles, weekly_budget, address).save_to_db()
         return True
 
-
     def save_to_db(self):
         Database.insert("users", self.json())
 
     def json(self):
         return {
-            "_id": self._id,
-            "email": self.email,
-            "password": self.password
+            'name': self.name,
+            'last_name': self.last_name,
+            'email': self.email,
+            'password': self.password,
+            'vehicles': self.vehicles,
+            'weekly_budget': self.weekly_budget,
+            'address': self.address,
+            '_id': self._id
         }

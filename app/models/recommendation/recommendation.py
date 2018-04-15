@@ -4,15 +4,17 @@ from app import Database
 
 
 class Data(object):
-    def __init__(self, vehicle,tiempo , leave):
+    def __init__(self, vehicle, tiempo, leave, icon):
         self.vehicle = vehicle
         self.tiempo = tiempo
         self.leave = leave
+        self.icon = icon
     def json(self):
         return {
             'vehicle':self.vehicle,
             'tiempo':self.tiempo,
-            'leave':self.leave
+            'leave':self.leave,
+            'icon':self.icon
         }
 
 

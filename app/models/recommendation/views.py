@@ -4,6 +4,7 @@ from app.models.recommendation.recommendation import Recommendation
 
 recommendations_blueprint = Blueprint('recommendations', __name__)
 
+@recommendations_blueprint.route('/get', methods=['GET'])
 @recommendations_blueprint.route('/get/<string:user_id>', methods=['GET'])
 def get_by_id(user_id):
     data = Recommendation.get_by_user_id(user_id)

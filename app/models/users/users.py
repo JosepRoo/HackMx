@@ -9,14 +9,14 @@ from app.models.vehicles.vehicle import Vehicle
 
 class User(object):
 
-    def __init__(self, name, last_name, email, password, vehicles, weekly_budget, addresses, _id=None):
+    def __init__(self, name, last_name, email, password, vehicles, weekly_budget, addresses=None, _id=None):
         self.name = name
         self.last_name = last_name
         self.password = password
         self.email = email
         self.vehicles = [Vehicle.create_vehicle(vehicle) for vehicle in vehicles]
         self.weekly_budget = weekly_budget
-        self.addresses = [Address.create_address(address) for address in addresses]
+        self.addresses = [Address.create_address(address) for address in addresses] if addresses is not None else []
         self._id = uuid.uuid4().hex if _id is None else _id
 
     @staticmethod

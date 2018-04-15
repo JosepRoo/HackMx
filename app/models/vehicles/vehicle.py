@@ -4,12 +4,12 @@ from app import Database
 
 
 class Vehicle(object):
-    def __init__(self, name, icon, cost, description, is_used=False, _id=None):
+    def __init__(self, name, icon, cost, description, maxDistance, _id=None):
         self.name = name
         self.icon = icon
         self.cost = cost
         self.description = description
-        self.is_used = is_used
+        self.maxDistance = maxDistance
         self._id = uuid.uuid4().hex if _id is None else _id
 
     @classmethod
@@ -35,6 +35,6 @@ class Vehicle(object):
             'icon': self.icon,
             'cost': self.cost,
             'description': self.description,
-            'isUsed': self.isUsed,
+            'maxDistance': self.maxDistance,
             '_id': self._id
         }

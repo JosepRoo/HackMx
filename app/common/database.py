@@ -10,7 +10,7 @@ class Database(object):
     def initialize():
         client = pymongo.MongoClient(Database.URI)
         #client.admin
-        Database.DATABASE = client['fullstack']
+        Database.DATABASE = client['hackmx']
 
     @staticmethod
     def insert(collection, data):

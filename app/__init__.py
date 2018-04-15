@@ -21,6 +21,9 @@ def create_app(config_name):
     from app.models.vehicles.views import vehicle_blueprint
     app.register_blueprint(vehicle_blueprint, url_prefix="/vehicles")
 
+    from app.models.addresses.views import address_blueprint
+    app.register_blueprint(address_blueprint, url_prefix="/addresses")
+
     # Initialize any extensions we are using
     bootstrap.init_app(app)
     Database.initialize()

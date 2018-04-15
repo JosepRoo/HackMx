@@ -21,6 +21,8 @@ class User(object):
         self.addresses = [Address.create_address(address) for address in addresses] if addresses is not None else []
         self._id = uuid.uuid4().hex if _id is None else _id
 
+    def get_id(self):
+        return self._id
     @staticmethod
     def is_login_valid(email, password):
         user_data = Database.find_one("users", {"email": email})
@@ -40,6 +42,19 @@ class User(object):
 
         User(name, last_name, email, Utils.hash_password(password), vehicles, weekly_budget, addresses).save_to_db()
         return True
+
+    @classmethod
+    def get_users(cls):
+        users = Database.find("users", {})
+        return [cls(**user) for user in users]
+
+    @classmethod
+    def get_users_addresses(cls, user_id=None):
+        if user_id is None:
+            users = Database.find("users", ({}, {"addresses": 1, "_id": 0}))
+        else:
+            users = Database.find("users", ({"_id":user_id}, {"addresses": 1, "_id": 0}))
+        return [Address.create_address(user['addresses']) for user in users]
 
     def save_to_db(self):
         Database.insert("users", self.json())

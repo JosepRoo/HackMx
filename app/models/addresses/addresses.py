@@ -1,18 +1,15 @@
 import uuid
 from app import Database
 from app.models.addresses.errors import AddressErrors
+from app.models.period.period import Period
 from app.models.users.errors import UserErrors
 
 
 class Address(object):
-    def __init__(self, name, street, zip_code, state, city, country, period, _id=None):
+    def __init__(self, name, coord, period, _id=None):
         self.name = name
-        self.street = street
-        self.zip_code = zip_code
-        self.state = state
-        self.city = city
-        self.country = country
-        self.period = period
+        self.coord = coord
+        self.period = Period.create_period(period)
         self._id = uuid.uuid4().hex if _id is None else _id
 
     @classmethod
@@ -37,12 +34,12 @@ class Address(object):
     def json(self):
         return{
             'name': self.name,
-            'street': self.street,
-            'zip_code': self.zip_code,
-            'state': self.state,
-            'city': self.city,
-            'country': self.country,
-            'period': self.period,
+            'coord': self.coord,
+            'period': self.period.json(),
             '_id': self._id
         }
 
+print(Address("Casa",[19.54720747671817, -99.29932693374141],{'day': 'Monday', 'initialTime': '06:00', 'finalTime': '07:00'}).json())
+print(Address("Trabajo",[119.4427747,-99.2171993],{'day': 'Monday', 'initialTime': '09:00', 'finalTime': '15:00'}).json())
+print(Address("Escuela",[19.5949154,-99.2298629],{'day': 'Monday', 'initialTime': '16:00', 'finalTime': '22:00'}).json())
+print(Address("Casa",[19.54720747671817, -99.29932693374141],{'day': 'Monday', 'initialTime': '22:50', 'finalTime': '23:00'}).json())

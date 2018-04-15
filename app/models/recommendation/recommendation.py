@@ -23,7 +23,7 @@ class Recommendation(object):
         self.user_id = user_id
         self.fromA = fromA
         self.to = to
-        self.data = [Data(d['vehicle'], d['tiempo'], d['leave']) for d in data]
+        self.data = [Data(d['vehicle'], d['tiempo'], d['leave'], d['icon']) for d in data]
         self._id = uuid.uuid4().hex if _id is None else _id
 
     @classmethod
@@ -40,5 +40,5 @@ class Recommendation(object):
             'fromA': self.fromA,
             'to': self.to,
             'data': [d.json() for d in self.data],
-            '_id' : self._id
+            '_id': self._id
         }

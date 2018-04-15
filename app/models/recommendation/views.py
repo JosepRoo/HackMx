@@ -9,6 +9,6 @@ recommendations_blueprint = Blueprint('recommendations', __name__)
 def get_by_id(user_id=None):
     data = Recommendation.get_by_user_id(user_id)
     if data is not None:
-        return jsonify(Response(success=True, records=len(data), data=data))
+        return jsonify(Response(success=True, records=len(data), data=[d.json() for d in data]).json())
     else:
         return jsonify(Response(msg_response="no data for the request"))

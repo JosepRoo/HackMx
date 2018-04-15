@@ -8,7 +8,6 @@ class Data(object):
         self.vehicle = vehicle
         self.tiempo = tiempo
         self.leave = leave
-
     def json(self):
         return {
             'vehicle':self.vehicle,
@@ -22,7 +21,7 @@ class Recommendation(object):
         self.user_id = user_id
         self.fromA = fromA
         self.to = to
-        self.data = Data(data['vehicle'], data['tiempo'], data['leave'])
+        self.data = [Data(d['vehicle'], d['tiempo'], d['leave']) for d in data]
         self._id = uuid.uuid4().hex if _id is None else _id
 
     @classmethod
@@ -38,6 +37,6 @@ class Recommendation(object):
             'user_id': self.user_id,
             'fromA': self.fromA,
             'to': self.to,
-            'data': self.data.json(),
+            'data': [d.json() for d in self.data],
             '_id' : self._id
         }

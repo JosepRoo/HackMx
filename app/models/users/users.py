@@ -2,6 +2,7 @@ import uuid
 
 from app import Database
 from app.common.utils import Utils
+from app.models.addresses.addresses import Address
 from app.models.users.errors import UserErrors
 from app.models.vehicles.vehicle import Vehicle
 
@@ -15,7 +16,7 @@ class User(object):
         self.email = email
         self.vehicles = [Vehicle.create_vehicle(vehicle) for vehicle in vehicles]
         self.weekly_budget = weekly_budget
-        self.addresses = addresses
+        self.addresses = [Address.create_address(address) for address in addresses]
         self._id = uuid.uuid4().hex if _id is None else _id
 
     @staticmethod
@@ -47,8 +48,8 @@ class User(object):
             'last_name': self.last_name,
             'email': self.email,
             'password': self.password,
-            'vehicles': self.vehicles,
+            'vehicles': [vehicle.json() for vehicle in self.vehicles],
             'weekly_budget': self.weekly_budget,
-            'addresses': self.addresses,
+            'addresses': [address.json() for address in self.addresses],
             '_id': self._id
         }

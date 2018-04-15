@@ -39,7 +39,3 @@ class Address(object):
             '_id': self._id
         }
 
-print(Address("Casa",[19.54720747671817, -99.29932693374141],{'day': 'Monday', 'initialTime': '06:00', 'finalTime': '07:00'}).json())
-print(Address("Trabajo",[119.4427747,-99.2171993],{'day': 'Monday', 'initialTime': '09:00', 'finalTime': '15:00'}).json())
-print(Address("Escuela",[19.5949154,-99.2298629],{'day': 'Monday', 'initialTime': '16:00', 'finalTime': '22:00'}).json())
-print(Address("Casa",[19.54720747671817, -99.29932693374141],{'day': 'Monday', 'initialTime': '22:50', 'finalTime': '23:00'}).json())

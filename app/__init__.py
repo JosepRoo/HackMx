@@ -24,6 +24,9 @@ def create_app(config_name):
     from app.models.addresses.views import address_blueprint
     app.register_blueprint(address_blueprint, url_prefix="/addresses")
 
+    from app.models.recommendation.views import recommendations_blueprint
+    app.register_blueprint(recommendations_blueprint, url_prefix="/recommendations")
+
     # Initialize any extensions we are using
     bootstrap.init_app(app)
     Database.initialize()

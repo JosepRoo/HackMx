@@ -36,7 +36,7 @@ class Recommendation(object):
     def json(self):
         return {
             'user_id': self.user_id,
-            'from': self.fromA,
+            'fromA': self.fromA,
             'to': self.to,
             'data': self.data.json(),
             '_id' : self._id

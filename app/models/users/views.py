@@ -1,4 +1,4 @@
-from flask import Blueprint, request, session, url_for, render_template, jsonify
+from flask import Blueprint, request, session, jsonify
 from app.common.response import Response
 from app.models.users.errors import UserErrors
 from app.models.users.users import User
@@ -27,9 +27,9 @@ def register_user():
     password = request.form['password']
     vehicles = request.form['vehicles']
     weekly_budget = request.form['weekly_budget']
-    address = request.form['address']
+    addresses = request.form['addresses']
     try:
-        if User.register_user(name, last_name, email, password, vehicles, weekly_budget, address):
+        if User.register_user(name, last_name, email, password, vehicles, weekly_budget, addresses):
             session['email'] = email
             return jsonify(Response(success=True, records=1, data=email, msg_response="Registro Exitoso"))
     except UserErrors.UserErrors as e:

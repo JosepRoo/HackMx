@@ -1,32 +1,33 @@
-from flask import Blueprint, request, session, url_for, render_template, jsonify
+from flask import Blueprint, request, session, jsonify
 from app.common.response import Response
+from app.models.addresses.addresses import Address
 from app.models.users.errors import UserErrors
 from app.models.users.users import User
-from app.models.addresses.addresses import Address
+from app.models.addresses.errors import AddressErrors
 
 
-user_blueprint = Blueprint('addresses', __name__)
+address_blueprint = Blueprint('addresses', __name__)
 
 
-@user_blueprint.route('/getUserAddresses', methods=['POST'])
-
+@address_blueprint.route('/get_user_addresses', methods=['GET'])
 def get_user_addresses():
     email = session['email']
+
     try:
-        if Address.get_user_addresses(email):
-            session['email'] = email
-            return jsonify(Response(success=True, records=1, data=email, msg_response="Login Correcto"))
-    except AddressErrors.AddressErrors as e:
+        if User.isLogged(email):
+            addresses = [address.json() for address in Address.get_user_addresses(email)]
+            if addresses is not None:
+                return jsonify(Response(success=True, records=len(addresses), data=addresses, msg_response="Login Correcto").json())
+    except AddressErrors as e:
+        return jsonify(Response(msg_response=e.message))
+    except UserErrors as e:
         return jsonify(Response(msg_response=e.message))
 
-
-@user_blueprint.route('/register', methods=['POST'])
-def register_user():
-    email = request.form['email']
-    password = request.form['password']
+@address_blueprint.route('/add_address', methods=['PUT'])
+def add_address():
+    email = session['email']
     try:
-        if User.register_user(email, password):
-            session['email'] = email
-            return jsonify(Response(success=True, records=1, data=email, msg_response="Registro Exitoso"))
-    except UserErrors.UserErrors as e:
+        if User.isLogged(email):
+            Address.update_mongo(email)
+    except:
         return jsonify(Response(msg_response=e.message))

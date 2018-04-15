@@ -17,3 +17,6 @@ class UserAlreadyRegisteredError(UserErrors):
 
 class InvalidEmailError(UserErrors):
     pass
+
+class UserNotLoggIn(UserErrors):
+    pass

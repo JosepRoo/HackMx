@@ -1,5 +1,7 @@
 import uuid
 
+from flask import session
+
 from app import Database
 from app.common.utils import Utils
 from app.models.addresses.addresses import Address
@@ -29,7 +31,7 @@ class User(object):
         return True
 
     @staticmethod
-    def register_user(name, last_name, email, password, vehicles, weekly_budget, addresses):
+    def register_user(name, last_name, email, password, vehicles, weekly_budget, addresses=[]):
         user_data = Database.find_one("users", {"email": email})
         if user_data is not None:
             raise UserErrors.UserAlreadyRegisteredError("the e-mail you used already exists")
@@ -50,6 +52,13 @@ class User(object):
             'password': self.password,
             'vehicles': [vehicle.json() for vehicle in self.vehicles],
             'weekly_budget': self.weekly_budget,
-            'addresses': [address.json() for address in self.addresses],
+            'addresses': [address.json() for address in self.addresses] if self.addresses is not None else [],
             '_id': self._id
         }
+
+    @staticmethod
+    def isLogged(email):
+        if email is not None:
+            return True
+        else:
+            raise UserErrors.UserNotLoggIn("The User is not Logged in")

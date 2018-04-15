@@ -28,3 +28,8 @@ class Database(object):
     def update_one(collection, query, filter):
         result = Database.DATABASE[collection].update_one(filter, query)
         return result.modified_count
+
+    @staticmethod
+    def update(collection, query, filter):
+        result = Database.DATABASE[collection].update_one(filter, query)
+        return result.modified_count

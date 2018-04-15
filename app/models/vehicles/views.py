@@ -11,5 +11,5 @@ def get_vehicle(vehicle_id=None):
     if vehicle_id is None:
         vehicles = [vehicle.json() for vehicle in Vehicle.get_vehicles()]
     else:
-        vehicles = Vehicle.get_vehicle(vehicle_id)
+        vehicles = Vehicle.get_vehicle(vehicle_id).json()
     return jsonify(Response(success=True, records=len(vehicles), data=vehicles).json())

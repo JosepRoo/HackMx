@@ -28,6 +28,9 @@ class Address(object):
     def create_address(cls, address):
         return cls(**address)
 
+    def update_mongo(self, user_email):
+        Database.update_one("users", {"$push": self.json()}, {"email": user_email})
+
     def save_to_mongo(self):
         Database.insert("Addresses", self.json())
 

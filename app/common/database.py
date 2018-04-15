@@ -23,3 +23,8 @@ class Database(object):
     @staticmethod
     def find_one(collection, query):
         return Database.DATABASE[collection].find_one(query)
+
+    @staticmethod
+    def update_one(collection, query, filter):
+        result = Database.DATABASE[collection].update_one(filter, query)
+        return result.modified_count

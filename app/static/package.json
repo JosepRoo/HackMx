@@ -1,5 +1,5 @@
 {
-  "name": "intellimove",
+  "name": "fuse",
   "version": "5.2.10",
   "license": "https://themeforest.net/licenses/terms/regular",
   "scripts": {
@@ -14,7 +14,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "bundle-report": "webpack-bundle-analyzer dist/stats.json"
+    "bundle-report": "webpack-bundle-analyzer dist/stats.json",
+    "compodoc": "./node_modules/.bin/compodoc -p src/tsconfig.app.json"
   },
   "private": true,
   "dependencies": {

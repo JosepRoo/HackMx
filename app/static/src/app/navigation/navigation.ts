@@ -1,24 +1,26 @@
 export const navigation = [
     {
-        'id'      : 'applications',
-        'title'   : 'Applications',
+        'id'       : 'applications',
+        'title'    : 'Principal',
         'translate': 'NAV.APPLICATIONS',
-        'type'    : 'group',
-        'children': [
+        'type'     : 'group',
+        'icon'     : 'apps',
+        'children' : [
             {
-                'id'   : 'sample',
-                'title': 'Sample',
-                'translate': 'NAV.SAMPLE.TITLE',
-                'type' : 'item',
-                'icon' : 'email',
-                'url'  : '/sample',
-                'badge': {
-                    'title': 25,
-                    'translate': 'NAV.SAMPLE.BADGE',
-                    'bg'   : '#F44336',
-                    'fg'   : '#FFFFFF'
-                }
+                'id'       : 'dashboards',
+                'title'    : 'Dashboards',
+                'translate': 'NAV.DASHBOARDS',
+                'type'     : 'collapse',
+                'icon'     : 'dashboard',
+                'children' : [
+                    {
+                        'id'   : 'analytics',
+                        'title': 'Analisis',
+                        'type' : 'item',
+                        'url'  : '/apps/dashboards/analytics'
+                    }
+                ]
             }
-        ]
+          ]
     }
-];
+  ];

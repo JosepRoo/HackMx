@@ -16,10 +16,10 @@ def create_app(config_name):
     app.register_blueprint(default_blueprint)
 
     from app.models.users.views import user_blueprint
-    app.register_blueprint(user_blueprint)
+    app.register_blueprint(user_blueprint, url_prefix="/users")
 
     from app.models.vehicles.views import vehicle_blueprint
-    app.register_blueprint(vehicle_blueprint)
+    app.register_blueprint(vehicle_blueprint, url_prefix="/vehicles")
 
     # Initialize any extensions we are using
     bootstrap.init_app(app)

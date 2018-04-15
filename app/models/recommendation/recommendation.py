@@ -26,8 +26,11 @@ class Recommendation(object):
         self._id = uuid.uuid4().hex if _id is None else _id
 
     @classmethod
-    def get_by_user_id(cls, user_id):
-        recommendations = Database.find("recommendations", {"user_id":user_id})
+    def get_by_user_id(cls, user_id=None):
+        if user_id is None:
+            recommendations = Database.find("recommendations", {})
+        else:
+            recommendations = Database.find("recommendations", {"user_id":user_id})
         return [cls(**recommendation) for recommendation in recommendations]
 
     def json(self):

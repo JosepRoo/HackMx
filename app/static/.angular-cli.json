@@ -1,7 +1,7 @@
 {
     "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
     "project": {
-        "name": "intellimove"
+        "name": "fuse"
     },
     "apps": [
         {
@@ -9,6 +9,7 @@
             "outDir": "dist",
             "assets": [
                 "assets",
+                "app/main/content/components/angular-material",
                 "favicon.ico"
             ],
             "index": "index.html",
@@ -21,7 +22,8 @@
             "styles": [
                 "styles.scss"
             ],
-            "scripts": [],
+            "scripts": [
+            ],
             "environmentSource": "environments/environment.ts",
             "environments": {
                 "dev": "environments/environment.ts",
@@ -39,19 +41,25 @@
         {
             "project": "src/tsconfig.app.json",
             "exclude": [
-                "**/node_modules/**"
+                "**/node_modules/**",
+                "**/src/app/fuse-fake-db/**/*",
+                "**/src/assets/angular-material-examples/**/*"
             ]
         },
         {
             "project": "src/tsconfig.spec.json",
             "exclude": [
-                "**/node_modules/**"
+                "**/node_modules/**",
+                "**/src/app/fuse-fake-db/**/*",
+                "**/src/assets/angular-material-examples/**/*"
             ]
         },
         {
             "project": "e2e/tsconfig.e2e.json",
             "exclude": [
-                "**/node_modules/**"
+                "**/node_modules/**",
+                "**/src/app/fuse-fake-db/**/*",
+                "**/src/assets/angular-material-examples/**/*"
             ]
         }
     ],
